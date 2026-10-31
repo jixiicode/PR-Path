@@ -96,72 +96,66 @@ navLinks.querySelectorAll("a").forEach((link) => {
 });
 
 renderLessonProgress();
-<<<<<<< HEAD
-=======
+
 // PR-Path Contributors Wall
-
-const contributors = [
-    {
-        name: "Example Contributor",
-        username: "octocat",
-        message: "My open-source journey starts here! 🚀"
-    }
-];
-
-const contributorsGrid = document.getElementById("contributors-grid");
-
-if (contributorsGrid) {
-    contributorsGrid.innerHTML = contributors.map((person, index) => `
-        <article class="contributor-card">
-
-            <div class="contributor-number">
-                ${String(index + 1).padStart(2, "0")}
-            </div>
-
-            <p class="contributor-label">
-                FIRST PR MERGED
-            </p>
-
-            <h3>${person.name}</h3>
-
-            <p class="contributor-message">
-                ${person.message}
-            </p>
-
-            <a
-                class="contributor-github"
-                href="https://github.com/${encodeURIComponent(person.username)}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                @${person.username}
-            </a>
-
-            <button class="celebrate-button" type="button">
-                Celebrate 🎉
-            </button>
-
-        </article>
-    `).join("");
-
-    contributorsGrid.addEventListener("click", (event) => {
-        const button = event.target.closest(".celebrate-button");
-
-        if (!button) return;
-
-        button.textContent = "Congratulations! 🎉";
-    });
-}
 async function loadContributors() {
-  try {
-    const response = await fetch("./contributors.json");
-    const contributors = await response.json();
+    const contributorsGrid = document.getElementById("contributors-grid");
 
-    console.log(contributors);
-  } catch (error) {
-    console.error("Error loading contributors:", error);
-  }
+    if (!contributorsGrid) {
+        console.error('Element "#contributors-grid" not found in index.html');
+        return;
+    }
+
+    try {
+        const response = await fetch("./contributors.json");
+
+        if (!response.ok) {
+            throw new Error(`Failed to load contributors.json: ${response.status}`);
+        }
+
+        const contributors = await response.json();
+
+        contributorsGrid.innerHTML = contributors.map((person, index) => `
+            <article class="contributor-card">
+                <div class="contributor-number">
+                    ${String(index + 1).padStart(2, "0")}
+                </div>
+
+                <p class="contributor-label">FIRST PR MERGED</p>
+
+                <h3>${person.name}</h3>
+
+                <p class="contributor-message">${person.message}</p>
+
+                <a
+                    class="contributor-github"
+                    href="https://github.com/${encodeURIComponent(person.username)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    @${person.username}
+                </a>
+
+                <button class="celebrate-button" type="button">
+                    Celebrate 🎉
+                </button>
+            </article>
+        `).join("");
+
+        contributorsGrid.addEventListener("click", (event) => {
+            const button = event.target.closest(".celebrate-button");
+
+            if (button) {
+                button.textContent = "Congratulations! 🎉";
+            }
+        });
+
+    } catch (error) {
+        console.error("Error loading contributors:", error);
+        contributorsGrid.textContent =
+            "Unable to load contributors. Please try again later.";
+    }
 }
 
 loadContributors();
->>>>>>> 9032a61 (Add PR-Path website and contributor data)
+```
