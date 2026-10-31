@@ -121,8 +121,6 @@ async function loadContributors() {
                     ${String(index + 1).padStart(2, "0")}
                 </div>
 
-                <p class="contributor-label">FIRST PR MERGED</p>
-
                 <h3>${person.name}</h3>
 
                 <p class="contributor-message">${person.message}</p>
@@ -158,4 +156,3 @@ async function loadContributors() {
 }
 
 loadContributors();
-```
