@@ -147,4 +147,53 @@ async function loadContributors() {
             "Unable to load contributors. Please try again later.";
     }
 }
+
+async function loadContributors() {
+    const contributorsGrid = document.getElementById("contributors-grid");
+
+    if (!contributorsGrid) {
+        console.error('Element "#contributors-grid" not found in index.html');
+        return;
+    }
+
+    try {
+        const response = await fetch("./contributors.json");
+
+        if (!response.ok) {
+            throw new Error(`Failed to load contributors.json: ${response.status}`);
+        }
+
+        const contributors = await response.json();
+
+        contributorsGrid.innerHTML = contributors.map((person, index) => `
+            <article class="contributor-card">
+                <div class="contributor-number">
+                    ${String(index + 1).padStart(2, "0")}
+                </div>
+
+                <h3>${person.name}</h3>
+
+                <p class="contributor-message">${person.message}</p>
+
+                <button class="celebrate-button" type="button">
+                    Celebrate 🎉
+                </button>
+            </article>
+        `).join("");
+
+    } catch (error) {
+        console.error("Error loading contributors:", error);
+        contributorsGrid.textContent =
+            "Unable to load contributors. Please try again later.";
+    }
+}
+
+document.getElementById("contributors-grid")?.addEventListener("click", (event) => {
+    const button = event.target.closest(".celebrate-button");
+
+    if (button) {
+        button.textContent = "Congratulations! 🎉";
+    }
+});
+
 loadContributors();
