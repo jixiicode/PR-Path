@@ -1,0 +1,792 @@
+/* PR-Path — single-page learning website */
+:root {
+    --bg: #0b0f19;
+    --panel: #121826;
+    --panel-soft: #151d2c;
+    --border: #273144;
+    --text: #f5f7fb;
+    --muted: #a7b1c3;
+    --green: #4ade80;
+    --green-dark: #22c55e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(11, 15, 25, 0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar {
+    width: min(1180px, 90%);
+    min-height: 82px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+.logo {
+    flex-shrink: 0;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    white-space: nowrap;
+}
+
+.logo span,
+.hero h1 span,
+.section-heading h2 span,
+.final-cta h2 {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2.5vw, 34px);
+}
+
+.nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.94rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--green);
+}
+
+.nav-button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-weight: 750;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-button {
+    flex-shrink: 0;
+    background: var(--green);
+    color: #07110b;
+}
+
+.nav-button:hover,
+.button-primary:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 9px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 21px;
+    height: 2px;
+    margin: 4px 0;
+    background: var(--text);
+}
+
+.section-wrap {
+    width: min(1080px, 88%);
+    margin: 0 auto;
+}
+
+.hero {
+    min-height: 680px;
+    padding: 105px 0 78px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.eyebrow {
+    margin: 0 0 18px;
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    line-height: 1.7;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin: 0 9px 1px 0;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.6);
+}
+
+.hero h1 {
+    max-width: 900px;
+    margin: 0;
+    font-size: clamp(2.7rem, 6.6vw, 5.4rem);
+    font-weight: 850;
+    letter-spacing: -0.065em;
+    line-height: 1.08;
+    overflow-wrap: break-word;
+}
+
+.hero-copy {
+    max-width: 620px;
+    margin: 26px 0 0;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.12rem);
+    line-height: 1.85;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 30px;
+}
+
+.button-primary {
+    background: var(--green);
+    color: #07110b;
+}
+
+.button-secondary {
+    border: 1px solid #3a4558;
+    color: var(--text);
+}
+
+.button-secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-2px);
+}
+
+.hero-note {
+    margin: 17px 0 0;
+    color: #7f8ba0;
+    font-size: 0.84rem;
+}
+
+.journey-strip {
+    width: min(760px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 58px;
+    padding: 20px 25px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(21, 29, 44, 0.9), rgba(18, 24, 38, 0.7));
+}
+
+.journey-strip > div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.9rem;
+}
+
+.workflow-number {
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.workflow-arrow {
+    color: #657187;
+}
+
+.learning-section,
+.resources-section {
+    padding-top: 85px;
+    padding-bottom: 95px;
+    scroll-margin-top: 95px;
+}
+
+.section-heading {
+    max-width: 720px;
+    margin-bottom: 34px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+}
+
+.section-heading > p:last-child {
+    margin: 16px 0 0;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.progress-panel {
+    padding: 20px 22px;
+    margin-bottom: 24px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.progress-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.progress-topline strong {
+    color: var(--green);
+    font-size: 0.84rem;
+}
+
+.progress-track {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #293247;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--green);
+    transition: width 0.3s ease;
+}
+
+.lesson-list {
+    display: grid;
+    gap: 16px;
+}
+
+.lesson-card {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 22px;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.lesson-card:hover {
+    border-color: #3d5a4b;
+    transform: translateY(-2px);
+}
+
+.lesson-card.is-complete {
+    border-color: rgba(74, 222, 128, 0.65);
+}
+
+.lesson-index {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    font-weight: 850;
+}
+
+.card-kicker,
+.challenge-tag {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.lesson-content h3,
+.challenge-card h3,
+.resource-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    line-height: 1.35;
+}
+
+.lesson-content > p:not(.card-kicker),
+.challenge-card p,
+.resource-card p {
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.lesson-content > p:not(.card-kicker) {
+    margin: 0 0 16px;
+}
+
+.lesson-content strong {
+    color: var(--text);
+}
+
+.tip-box {
+    margin-top: 14px;
+    padding: 13px 15px;
+    border-left: 3px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    background: rgba(74, 222, 128, 0.06);
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.tip-box strong {
+    color: var(--green);
+}
+
+.command-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.command-list code {
+    display: block;
+    max-width: 100%;
+    padding: 11px 13px;
+    overflow-wrap: anywhere;
+    border: 1px solid #2b3548;
+    border-radius: 7px;
+    background: #090d15;
+    color: #b7f7ca;
+    font-size: 0.85rem;
+}
+
+.command-list span {
+    color: #8490a4;
+    font-size: 0.82rem;
+}
+
+.mini-steps {
+    padding-left: 22px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.complete-button {
+    min-width: 125px;
+    padding: 10px 12px;
+    border: 1px solid #3b475b;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.complete-button:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.lesson-card.is-complete .complete-button {
+    border-color: var(--green);
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+}
+
+.challenge-section {
+    padding: 85px 0 95px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #0e1420;
+    scroll-margin-top: 95px;
+}
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.challenge-card {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+}
+
+.challenge-card ul {
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+.challenge-card-accent {
+    background: linear-gradient(145deg, #14251e, #121826 75%);
+}
+
+.text-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--green);
+    font-size: 0.88rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+.check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin: 15px 0;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.check-row input {
+    width: 17px;
+    height: 17px;
+    margin-top: 4px;
+    accent-color: var(--green);
+    flex-shrink: 0;
+}
+
+.check-row:has(input:checked) {
+    color: var(--text);
+}
+
+.checklist-note {
+    margin-top: 20px;
+    font-size: 0.78rem;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.resource-card {
+    display: block;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--panel);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.resource-card:hover {
+    border-color: var(--green);
+    transform: translateY(-3px);
+}
+
+.resource-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--green);
+    font-weight: 850;
+}
+
+.resource-card p {
+    min-height: 55px;
+    margin: 0 0 12px;
+    font-size: 0.92rem;
+}
+
+.final-cta {
+    padding: 75px 0;
+    border-top: 1px solid var(--border);
+    background: radial-gradient(ellipse at center, rgba(74, 222, 128, 0.09), transparent 65%);
+    text-align: center;
+}
+
+.final-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final-cta h2 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    letter-spacing: -0.05em;
+}
+
+.final-cta-inner > p:not(.eyebrow) {
+    color: var(--muted);
+    margin: 15px 0 25px;
+}
+
+.site-footer {
+    width: min(1180px, 90%);
+    min-height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.back-to-top {
+    color: var(--green);
+    font-size: 0.88rem;
+    text-decoration: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 4px;
+}
+
+@media (max-width: 850px) {
+    .navbar {
+        gap: 16px;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.84rem;
+    }
+
+    .nav-button {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+
+    .lesson-card {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .lesson-index {
+        width: 42px;
+        height: 42px;
+    }
+
+    .complete-button {
+        grid-column: 2;
+        justify-self: start;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-card p {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    html {
+        scroll-padding-top: 75px;
+    }
+
+    .navbar {
+        position: relative;
+        min-height: 72px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 12px 0;
+    }
+
+    .logo {
+        font-size: 1.45rem;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 11px 5px;
+        font-size: 0.95rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 80px 0 65px;
+    }
+
+    .eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.55rem, 11vw, 4rem);
+    }
+
+    .hero-copy {
+        font-size: 1rem;
+    }
+
+    .journey-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: stretch;
+        gap: 16px;
+        margin-top: 40px;
+        padding: 18px;
+    }
+
+    .workflow-arrow {
+        display: none;
+    }
+
+    .learning-section,
+    .resources-section {
+        padding-top: 65px;
+        padding-bottom: 70px;
+    }
+
+    .section-heading h2 {
+        font-size: clamp(1.9rem, 8vw, 2.7rem);
+    }
+
+    .progress-panel {
+        padding: 16px;
+    }
+
+    .progress-topline {
+        align-items: flex-start;
+        font-size: 0.82rem;
+    }
+
+    .lesson-card {
+        padding: 19px;
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .lesson-index {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+
+    .lesson-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .challenge-section {
+        padding: 65px 0 70px;
+    }
+
+    .challenge-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .challenge-card {
+        padding: 22px;
+    }
+
+    .site-footer {
+        padding: 25px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .site-footer p {
+        width: 100%;
+        order: 3;
+        margin: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
